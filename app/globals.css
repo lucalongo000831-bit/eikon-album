@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --ink: #171717;
+  --muted: #666666;
+  --line: #e7e7e7;
+  --paper: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--paper);
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  letter-spacing: 0;
+}
+
+::selection {
+  background: #111111;
+  color: #ffffff;
+}
+
+.folder-shape {
+  position: relative;
+  width: 92px;
+  height: 68px;
+  border-radius: 5px;
+  background: var(--folder-color);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.14);
+  transition:
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+.folder-shape::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 0;
+  width: 38px;
+  height: 14px;
+  border-radius: 5px 8px 0 0;
+  background: var(--folder-color);
+  filter: brightness(1.08);
+}
+
+.folder-shape::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.02));
+  pointer-events: none;
+}
+
+.album-open {
+  animation: album-open 260ms ease both;
+}
+
+@keyframes album-open {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

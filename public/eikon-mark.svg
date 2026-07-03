@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">EIKON mark</title>
+  <desc id="desc">Minimal transparent cinematic icon with frame, lens and light line.</desc>
+  <g fill="none" stroke="#111111" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="24" y="32" width="80" height="64" rx="12" stroke-width="4"/>
+    <path d="M36 45H92M36 83H92" stroke-width="2.5" opacity=".62"/>
+    <circle cx="64" cy="64" r="16" stroke-width="4"/>
+    <circle cx="64" cy="64" r="4" fill="#111111" stroke="none"/>
+    <path d="M48 40L80 88" stroke-width="2.5" opacity=".3"/>
+    <path d="M32 50h7M32 64h7M32 78h7M89 50h7M89 64h7M89 78h7" stroke-width="2.5" opacity=".7"/>
+  </g>
+</svg>
