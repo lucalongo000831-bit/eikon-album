@@ -77,28 +77,7 @@ export function AdminDashboard({
     const payload = payloadFromValues(values, profile.key);
 
     if (!configured) {
-      if (editingAlbum) {
-        setAlbums((current) =>
-          current.map((album) =>
-            album.id === editingAlbum.id
-              ? { ...album, ...payload, photo_count: album.photos.length }
-              : album
-          )
-        );
-        setEditingAlbum(null);
-      } else {
-        const localAlbum: AlbumWithPhotos = {
-          id: `local-${Date.now()}`,
-          ...payload,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-          photo_count: 0,
-          photos: []
-        };
-        setAlbums((current) => [...current, localAlbum]);
-        setSelectedAlbumId(localAlbum.id);
-      }
-      setMessage("Anteprima aggiornata localmente");
+      setMessage("Per salvare davvero online devi collegare Supabase.");
       return;
     }
 
@@ -158,8 +137,7 @@ export function AdminDashboard({
     }
 
     if (!configured) {
-      setAlbums((current) => current.filter((item) => item.id !== album.id));
-      setSelectedAlbumId(albums.find((item) => item.id !== album.id)?.id ?? "");
+      setMessage("Per eliminare davvero online devi collegare Supabase.");
       return;
     }
 
@@ -200,7 +178,7 @@ export function AdminDashboard({
             <div>
               <h1 className="text-base font-semibold uppercase">Admin</h1>
               <p className="mt-2 text-xs uppercase text-neutral-500">
-                {profile.name} / {configured ? "Codice admin attivo" : "Demo locale"}
+                {profile.name} / {configured ? "Database attivo" : "Database non collegato"}
               </p>
             </div>
             <button
@@ -235,6 +213,14 @@ export function AdminDashboard({
         </aside>
 
         <section className="grid content-start gap-8">
+          {!configured ? (
+            <p className="border border-amber-300 bg-amber-50 px-3 py-3 text-sm leading-6 text-amber-900">
+              L&apos;admin e sbloccato, ma senza Supabase non puo salvare modifiche
+              online. Collegando Supabase, i tasti aggiorna, elimina e carica foto
+              diventano persistenti per tutti.
+            </p>
+          ) : null}
+
           {message ? (
             <p className="border border-neutral-200 px-3 py-2 text-sm text-neutral-700">
               {message}
@@ -265,6 +251,7 @@ export function AdminDashboard({
             album={editingAlbum}
             onSubmit={saveAlbum}
             onCancel={() => setEditingAlbum(null)}
+            disabled={!configured}
           />
 
           {selectedAlbum ? (

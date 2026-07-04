@@ -48,11 +48,15 @@ textarea {
 
 .folder-shape {
   position: relative;
-  width: 92px;
-  height: 68px;
-  border-radius: 5px;
+  width: 74px;
+  height: 54px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 4px 5px 5px 5px;
   background: var(--folder-color);
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -8px 16px rgba(0, 0, 0, 0.1),
+    0 8px 18px rgba(15, 23, 42, 0.14);
   transition:
     box-shadow 180ms ease,
     filter 180ms ease;
@@ -61,13 +65,15 @@ textarea {
 .folder-shape::before {
   content: "";
   position: absolute;
-  top: -8px;
+  top: -7px;
   left: 0;
-  width: 38px;
-  height: 14px;
-  border-radius: 5px 8px 0 0;
+  width: 31px;
+  height: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  border-bottom: 0;
+  border-radius: 4px 7px 0 0;
   background: var(--folder-color);
-  filter: brightness(1.08);
+  filter: brightness(1.14) saturate(1.08);
 }
 
 .folder-shape::after {
@@ -75,7 +81,9 @@ textarea {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.02));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(0, 0, 0, 0.06)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1), transparent 38%, rgba(0, 0, 0, 0.04));
   pointer-events: none;
 }
 

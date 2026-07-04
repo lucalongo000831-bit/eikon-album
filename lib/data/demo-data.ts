@@ -4,9 +4,9 @@ const now = new Date("2026-07-03T08:56:00.000Z").toISOString();
 
 export const demoAlbums: Album[] = [
   {
-    id: "demo-jule26",
-    title: "Jule26",
-    slug: "jule26",
+    id: "demo-july-26",
+    title: "July 26",
+    slug: "july-26",
     profile_key: "luca",
     description: "Una sera d'estate tra interni caldi, giardino e dettagli salvati.",
     year: 2026,
@@ -19,57 +19,6 @@ export const demoAlbums: Album[] = [
     created_at: now,
     updated_at: now,
     photo_count: 6
-  },
-  {
-    id: "demo-estate-2024",
-    title: "ESTATE 2024",
-    slug: "estate-2024",
-    profile_key: "luca",
-    description: "Giornate lunghe, mare, cene tardi e fotografie salvate senza ordine.",
-    year: 2024,
-    location: "Italia",
-    category: "anni",
-    folder_color: "black",
-    position_x: 7,
-    position_y: 9,
-    is_public: true,
-    created_at: now,
-    updated_at: now,
-    photo_count: 5
-  },
-  {
-    id: "demo-sicilia",
-    title: "SICILIA",
-    slug: "sicilia",
-    profile_key: "luca",
-    description: "Strade calde, acqua trasparente e tavoli pieni.",
-    year: 2024,
-    location: "Sicilia",
-    category: "viaggi",
-    folder_color: "blue",
-    position_x: 54,
-    position_y: 38,
-    is_public: true,
-    created_at: now,
-    updated_at: now,
-    photo_count: 5
-  },
-  {
-    id: "demo-roma",
-    title: "ROMA",
-    slug: "roma",
-    profile_key: "luca",
-    description: "Weekend camminando, palazzi color miele e foto scattate al volo.",
-    year: 2023,
-    location: "Roma",
-    category: "viaggi",
-    folder_color: "red",
-    position_x: 47,
-    position_y: 55,
-    is_public: true,
-    created_at: now,
-    updated_at: now,
-    photo_count: 4
   },
   {
     id: "demo-amici",
@@ -149,17 +98,17 @@ const photoSeeds = [
   "train-window"
 ];
 
-function createJule26Photos(): Photo[] {
+function createJuly26Photos(): Photo[] {
   return Array.from({ length: 6 }, (_, index) => {
     const photoNumber = String(index + 1).padStart(2, "0");
-    const imageUrl = `/uploads/jule26/jule26-${photoNumber}.jpg`;
+    const imageUrl = `/uploads/july-26/july-26-${photoNumber}.jpg`;
 
     return {
-      id: `demo-jule26-photo-${index + 1}`,
-      album_id: "demo-jule26",
+      id: `demo-july-26-photo-${index + 1}`,
+      album_id: "demo-july-26",
       image_url: imageUrl,
-      storage_path: `demo/jule26/${photoNumber}.jpg`,
-      caption: index === 0 ? "Jule26" : null,
+      storage_path: `demo/july-26/${photoNumber}.jpg`,
+      caption: index === 0 ? "July 26" : null,
       sort_order: index,
       created_at: now,
       resolved_url: imageUrl
@@ -168,8 +117,8 @@ function createJule26Photos(): Photo[] {
 }
 
 function createDemoPhotos(album: Album): Photo[] {
-  if (album.slug === "jule26") {
-    return createJule26Photos();
+  if (album.slug === "july-26") {
+    return createJuly26Photos();
   }
 
   const count = album.photo_count ?? 4;
@@ -177,12 +126,12 @@ function createDemoPhotos(album: Album): Photo[] {
   return Array.from({ length: count }, (_, index) => ({
     id: `${album.id}-photo-${index + 1}`,
     album_id: album.id,
-    image_url: `https://picsum.photos/seed/${album.slug}-${photoSeeds[index % photoSeeds.length]}/1200/1500`,
+    image_url: `https://picsum.photos/seed/${album.slug}-${photoSeeds[index % photoSeeds.length]}/1200/1200`,
     storage_path: `demo/${album.slug}/${index + 1}.jpg`,
     caption: index === 0 ? album.description : null,
     sort_order: index,
     created_at: now,
-    resolved_url: `https://picsum.photos/seed/${album.slug}-${photoSeeds[index % photoSeeds.length]}/1200/1500`
+    resolved_url: `https://picsum.photos/seed/${album.slug}-${photoSeeds[index % photoSeeds.length]}/1200/1200`
   }));
 }
 

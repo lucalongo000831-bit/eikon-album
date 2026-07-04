@@ -151,15 +151,16 @@ to authenticated
 using (bucket_id = 'memories')
 with check (bucket_id = 'memories');
 
+delete from public.albums
+where profile_key = 'luca'
+  and slug in ('jule26', 'estate-2024', 'sicilia', 'roma');
+
 insert into public.albums (
   id, title, slug, profile_key, description, year, location, category,
   folder_color, position_x, position_y, is_public
 )
 values
-  ('88888888-8888-4888-8888-888888888888', 'Jule26', 'jule26', 'luca', 'Una sera d''estate tra interni caldi, giardino e dettagli salvati.', 2026, null, 'viaggi', 'blue', 58, 30, true),
-  ('11111111-1111-4111-8111-111111111111', 'ESTATE 2024', 'estate-2024', 'luca', 'Giornate lunghe, mare, cene tardi e fotografie salvate senza ordine.', 2024, 'Italia', 'anni', 'black', 7, 9, true),
-  ('22222222-2222-4222-8222-222222222222', 'SICILIA', 'sicilia', 'luca', 'Strade calde, acqua trasparente e tavoli pieni.', 2024, 'Sicilia', 'viaggi', 'blue', 54, 38, true),
-  ('33333333-3333-4333-8333-333333333333', 'ROMA', 'roma', 'luca', 'Weekend camminando, palazzi color miele e foto scattate al volo.', 2023, 'Roma', 'viaggi', 'red', 47, 55, true),
+  ('88888888-8888-4888-8888-888888888888', 'July 26', 'july-26', 'luca', 'Una sera d''estate tra interni caldi, giardino e dettagli salvati.', 2026, null, 'viaggi', 'blue', 58, 30, true),
   ('44444444-4444-4444-8444-444444444444', 'AMICI', 'amici', 'rachele', 'Compleanni, stanze disordinate, treni persi e foto mosse.', null, null, 'persone', 'green', 78, 17, true),
   ('55555555-5555-4555-8555-555555555555', 'FAMIGLIA', 'famiglia', 'rachele', 'Tavole lunghe, case conosciute e ricordi che tornano spesso.', null, null, 'persone', 'beige', 22, 70, true),
   ('66666666-6666-4666-8666-666666666666', 'UNIVERSITA', 'universita', 'emanuele', 'Appunti, scale, bar vicini e giorni pieni.', 2025, null, 'anni', 'gray', 70, 72, true),
@@ -181,21 +182,16 @@ insert into public.photos (album_id, image_url, storage_path, caption, sort_orde
 select album_id, image_url, storage_path, caption, sort_order
 from (
   values
-    ('88888888-8888-4888-8888-888888888888'::uuid, '/uploads/jule26/jule26-01.jpg', 'demo/jule26/01.jpg', 'Jule26', 0),
-    ('88888888-8888-4888-8888-888888888888'::uuid, '/uploads/jule26/jule26-02.jpg', 'demo/jule26/02.jpg', null, 1),
-    ('88888888-8888-4888-8888-888888888888'::uuid, '/uploads/jule26/jule26-03.jpg', 'demo/jule26/03.jpg', null, 2),
-    ('88888888-8888-4888-8888-888888888888'::uuid, '/uploads/jule26/jule26-04.jpg', 'demo/jule26/04.jpg', null, 3),
-    ('88888888-8888-4888-8888-888888888888'::uuid, '/uploads/jule26/jule26-05.jpg', 'demo/jule26/05.jpg', null, 4),
-    ('88888888-8888-4888-8888-888888888888'::uuid, '/uploads/jule26/jule26-06.jpg', 'demo/jule26/06.jpg', null, 5),
-    ('11111111-1111-4111-8111-111111111111'::uuid, 'https://picsum.photos/seed/estate-2024-sunny-road/1200/1500', 'demo/estate-2024/1.jpg', 'Giornate lunghe, mare, cene tardi e fotografie salvate senza ordine.', 0),
-    ('11111111-1111-4111-8111-111111111111'::uuid, 'https://picsum.photos/seed/estate-2024-blue-water/1200/1500', 'demo/estate-2024/2.jpg', null, 1),
-    ('22222222-2222-4222-8222-222222222222'::uuid, 'https://picsum.photos/seed/sicilia-blue-water/1200/1500', 'demo/sicilia/1.jpg', 'Strade calde, acqua trasparente e tavoli pieni.', 0),
-    ('22222222-2222-4222-8222-222222222222'::uuid, 'https://picsum.photos/seed/sicilia-late-dinner/1200/1500', 'demo/sicilia/2.jpg', null, 1),
-    ('33333333-3333-4333-8333-333333333333'::uuid, 'https://picsum.photos/seed/roma-old-city/1200/1500', 'demo/roma/1.jpg', 'Weekend camminando, palazzi color miele e foto scattate al volo.', 0),
-    ('44444444-4444-4444-8444-444444444444'::uuid, 'https://picsum.photos/seed/amici-late-dinner/1200/1500', 'demo/amici/1.jpg', 'Compleanni, stanze disordinate, treni persi e foto mosse.', 0),
-    ('55555555-5555-4555-8555-555555555555'::uuid, 'https://picsum.photos/seed/famiglia-dinner/1200/1500', 'demo/famiglia/1.jpg', 'Tavole lunghe, case conosciute e ricordi che tornano spesso.', 0),
-    ('66666666-6666-4666-8666-666666666666'::uuid, 'https://picsum.photos/seed/universita-window/1200/1500', 'demo/universita/1.jpg', 'Appunti, scale, bar vicini e giorni pieni.', 0),
-    ('77777777-7777-4777-8777-777777777777'::uuid, 'https://picsum.photos/seed/viaggi-train-window/1200/1500', 'demo/viaggi/1.jpg', 'Una cartella madre per partire da qualche parte.', 0)
+    ('88888888-8888-4888-8888-888888888888'::uuid, '/uploads/july-26/july-26-01.jpg', 'demo/july-26/01.jpg', 'July 26', 0),
+    ('88888888-8888-4888-8888-888888888888'::uuid, '/uploads/july-26/july-26-02.jpg', 'demo/july-26/02.jpg', null, 1),
+    ('88888888-8888-4888-8888-888888888888'::uuid, '/uploads/july-26/july-26-03.jpg', 'demo/july-26/03.jpg', null, 2),
+    ('88888888-8888-4888-8888-888888888888'::uuid, '/uploads/july-26/july-26-04.jpg', 'demo/july-26/04.jpg', null, 3),
+    ('88888888-8888-4888-8888-888888888888'::uuid, '/uploads/july-26/july-26-05.jpg', 'demo/july-26/05.jpg', null, 4),
+    ('88888888-8888-4888-8888-888888888888'::uuid, '/uploads/july-26/july-26-06.jpg', 'demo/july-26/06.jpg', null, 5),
+    ('44444444-4444-4444-8444-444444444444'::uuid, 'https://picsum.photos/seed/amici-late-dinner/1200/1200', 'demo/amici/1.jpg', 'Compleanni, stanze disordinate, treni persi e foto mosse.', 0),
+    ('55555555-5555-4555-8555-555555555555'::uuid, 'https://picsum.photos/seed/famiglia-dinner/1200/1200', 'demo/famiglia/1.jpg', 'Tavole lunghe, case conosciute e ricordi che tornano spesso.', 0),
+    ('66666666-6666-4666-8666-666666666666'::uuid, 'https://picsum.photos/seed/universita-window/1200/1200', 'demo/universita/1.jpg', 'Appunti, scale, bar vicini e giorni pieni.', 0),
+    ('77777777-7777-4777-8777-777777777777'::uuid, 'https://picsum.photos/seed/viaggi-train-window/1200/1200', 'demo/viaggi/1.jpg', 'Una cartella madre per partire da qualche parte.', 0)
 ) as seed(album_id, image_url, storage_path, caption, sort_order)
 where not exists (
   select 1

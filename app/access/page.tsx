@@ -27,7 +27,7 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
       >
         <input type="hidden" name="next" value={nextPath} />
         <img
-          src="/eikon-mark.svg"
+          src="/eikon-mark.png"
           alt="EIKON"
           className="mx-auto size-[82px]"
           width="82"

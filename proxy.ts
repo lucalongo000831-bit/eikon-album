@@ -26,6 +26,7 @@ export async function proxy(request: NextRequest) {
     pathname === "/favicon.ico" ||
     pathname === "/icon.svg" ||
     pathname === "/apple-icon.svg" ||
+    pathname === "/eikon-mark.png" ||
     pathname === "/eikon-mark.svg";
 
   if (!isPublicPath) {

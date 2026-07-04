@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { AlbumWithPhotos } from "@/lib/types";
 import { Breadcrumb } from "./breadcrumb";
 import { PhotoGrid } from "./photo-grid";
@@ -16,7 +17,15 @@ export function AlbumPage({ album }: AlbumPageProps) {
   return (
     <article className="album-open mx-auto min-h-[calc(100vh-52px)] max-w-5xl px-5 pb-16 pt-[84px] md:px-8">
       <div className="mb-9 flex flex-col gap-5 border-b border-neutral-200 pb-7">
-        <Breadcrumb current={album.title} />
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <Breadcrumb current={album.title} />
+          <Link
+            href="/"
+            className="inline-flex h-8 items-center border border-neutral-300 px-3 text-xs uppercase text-neutral-800 transition hover:border-neutral-950 hover:text-black"
+          >
+            Back
+          </Link>
+        </div>
         <div className="grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
           <div>
             <h1 className="text-lg font-semibold uppercase leading-none text-neutral-950 md:text-xl">

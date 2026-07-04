@@ -2,13 +2,13 @@ import type { CSSProperties } from "react";
 import type { FolderColor } from "@/lib/types";
 
 const folderColors: Record<FolderColor, string> = {
-  black: "#111111",
-  blue: "#5f87df",
-  pink: "#e8a4bb",
-  red: "#d62f3b",
-  beige: "#c7b89b",
-  gray: "#8e9297",
-  green: "#173f32"
+  black: "#171717",
+  blue: "#3767c8",
+  pink: "#d9799a",
+  red: "#bd2430",
+  beige: "#b5a27f",
+  gray: "#72777d",
+  green: "#0f4938"
 };
 
 type FolderIconProps = {

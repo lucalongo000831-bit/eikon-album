@@ -42,7 +42,7 @@ export function PhotoGrid({ photos }: PhotoGridProps) {
             onClick={() => setActiveIndex(index)}
             aria-label={`Apri foto ${index + 1}`}
           >
-            <span className="block aspect-[4/5] overflow-hidden border border-neutral-200 bg-neutral-100">
+            <span className="block aspect-square overflow-hidden border border-neutral-200 bg-neutral-100">
               <img
                 src={photo.resolved_url ?? photo.image_url}
                 alt={photo.caption ?? `Foto ${index + 1}`}
