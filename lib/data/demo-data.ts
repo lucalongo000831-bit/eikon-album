@@ -4,6 +4,23 @@ const now = new Date("2026-07-03T08:56:00.000Z").toISOString();
 
 export const demoAlbums: Album[] = [
   {
+    id: "demo-jule26",
+    title: "Jule26",
+    slug: "jule26",
+    profile_key: "luca",
+    description: "Una sera d'estate tra interni caldi, giardino e dettagli salvati.",
+    year: 2026,
+    location: null,
+    category: "viaggi",
+    folder_color: "blue",
+    position_x: 58,
+    position_y: 30,
+    is_public: true,
+    created_at: now,
+    updated_at: now,
+    photo_count: 6
+  },
+  {
     id: "demo-estate-2024",
     title: "ESTATE 2024",
     slug: "estate-2024",
@@ -132,7 +149,29 @@ const photoSeeds = [
   "train-window"
 ];
 
+function createJule26Photos(): Photo[] {
+  return Array.from({ length: 6 }, (_, index) => {
+    const photoNumber = String(index + 1).padStart(2, "0");
+    const imageUrl = `/uploads/jule26/jule26-${photoNumber}.jpg`;
+
+    return {
+      id: `demo-jule26-photo-${index + 1}`,
+      album_id: "demo-jule26",
+      image_url: imageUrl,
+      storage_path: `demo/jule26/${photoNumber}.jpg`,
+      caption: index === 0 ? "Jule26" : null,
+      sort_order: index,
+      created_at: now,
+      resolved_url: imageUrl
+    };
+  });
+}
+
 function createDemoPhotos(album: Album): Photo[] {
+  if (album.slug === "jule26") {
+    return createJule26Photos();
+  }
+
   const count = album.photo_count ?? 4;
 
   return Array.from({ length: count }, (_, index) => ({

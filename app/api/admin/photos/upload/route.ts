@@ -1,10 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getAdminSupabase, photoFromRecord } from "@/lib/api/admin";
+import { addPrivateWatermark } from "@/lib/image-watermark";
 
 export const runtime = "nodejs";
 
 function cleanFileName(fileName: string, index: number) {
-  const [name, extension = "jpg"] = fileName.split(/\.(?=[^.]+$)/);
+  const [name] = fileName.split(/\.(?=[^.]+$)/);
   const cleanName = name
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -12,7 +13,7 @@ function cleanFileName(fileName: string, index: number) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)+/g, "");
 
-  return `${cleanName || "foto"}-${Date.now()}-${index}.${extension.toLowerCase()}`;
+  return `${cleanName || "foto"}-${Date.now()}-${index}.jpg`;
 }
 
 export async function POST(request: NextRequest) {
@@ -52,11 +53,14 @@ export async function POST(request: NextRequest) {
     const file = files[index];
     const storagePath = `${albumSlug}/${cleanFileName(file.name, index)}`;
     const buffer = Buffer.from(await file.arrayBuffer());
+    const watermarkedBuffer = await addPrivateWatermark(buffer, {
+      label: `EIKON ${admin.profileKey}/${albumSlug}/${file.name}`
+    });
     const { error: uploadError } = await admin.supabase.storage
       .from("memories")
-      .upload(storagePath, buffer, {
+      .upload(storagePath, watermarkedBuffer, {
         cacheControl: "3600",
-        contentType: file.type || "image/jpeg",
+        contentType: "image/jpeg",
         upsert: false
       });
 

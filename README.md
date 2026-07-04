@@ -52,9 +52,12 @@ ADMIN_PASSWORD_LUCA=14052005
 ADMIN_PASSWORD_RACHELE=1
 ADMIN_PASSWORD_EMANUELE=2
 ACCESS_SESSION_SECRET=una-stringa-lunga-random
+PHOTO_WATERMARK_TEXT=EIKON private archive
 ```
 
 `ADMIN_ACCESS_CODE` e ancora letto come fallback per Luca, ma la variabile consigliata ora e `ADMIN_PASSWORD_LUCA`.
+
+Il codice `14052005` puo anche essere inserito nella prima schermata: apre direttamente l'admin del profilo Luca.
 
 Il cookie di accesso e firmato lato server e viene cancellato quando aggiorni, chiudi o riapri la pagina: il codice viene richiesto di nuovo a ogni nuova apertura o refresh.
 
@@ -118,6 +121,7 @@ Le foto caricate dall'admin finiscono nel bucket cosi: `memories/{album-slug}/{f
 - Le caption si modificano direttamente nella lista foto.
 - Le frecce su/giu riordinano le foto.
 - Il cestino elimina la foto.
+- Le foto caricate dall'admin vengono convertite in JPEG e ricevono un piccolo marker quasi invisibile piu metadata privati. Non e una garanzia legale assoluta, ma aiuta a riconoscere gli originali dell'archivio.
 
 Quando crei un album dal pannello admin, il sito imposta automaticamente:
 
